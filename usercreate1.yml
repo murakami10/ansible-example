@@ -1,0 +1,13 @@
+---
+- name: Register a user accoutn
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: user account
+      ansible.builtin.user:
+        name: "{{ item }}"
+      loop:
+        - taro
+        - jiro
+        - hanako
