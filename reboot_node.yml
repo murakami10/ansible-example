@@ -1,0 +1,9 @@
+---
+- name: Reboot the managed node.
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Reboot the RedHat system only.
+      ansible.builtin.reboot:
+      when: ansible_facts['os_family'] == "RedHat"
