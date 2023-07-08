@@ -1,0 +1,9 @@
+---
+- name: Reboot the managed node.
+  hosts: all
+  become: yes
+
+- tasks:
+    - name: debug
+      ansible.builtin.debug:
+        msg: "{{ ansible_facts['distribution'] }}"
