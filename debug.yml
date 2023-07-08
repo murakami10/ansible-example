@@ -3,7 +3,7 @@
   hosts: all
   become: yes
 
-- tasks:
+  tasks:
     - name: debug
       ansible.builtin.debug:
         msg: "{{ ansible_facts['distribution'] }}"
