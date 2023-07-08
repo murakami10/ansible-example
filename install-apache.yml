@@ -4,7 +4,7 @@
   gather_facts: no
 
   vars:
-#    apache_package_name: httpd
+    apache_package_name: httpd
     apache_service_name: httpd.service
 
   tasks:
