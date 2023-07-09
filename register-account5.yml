@@ -7,6 +7,7 @@
     - name: Back up your files.
       ansible.builtin.import_role:
         name: file-backup
+      become: yes
 
     - name: Register an account.
       ansible.builtin.import_role:
