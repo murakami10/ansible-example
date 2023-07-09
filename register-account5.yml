@@ -1,0 +1,14 @@
+---
+- name: Register a user account.
+  hosts: all
+  gather_facts: no
+
+  tasks:
+    - name: Back up your files.
+      ansible.builtin.import_role:
+        name: file-backup
+
+    - name: Register an account.
+      ansible.builtin.import_role:
+        name: regist-account
+      become: yes

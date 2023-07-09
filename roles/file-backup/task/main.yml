@@ -1,0 +1,20 @@
+---
+- name: Create a backup directory.
+  ansible.builtin.file:
+    path: "{{ backup_path }}"
+    state: directory
+
+- name: Back up the "/etc/passwd" file.
+  ansible.builtin.copy:
+    src: /etc/passwd
+    dest: "{{ backup_path }}passwd-{{ lookup('pipe','date +%Y%m%d%H%M%S') }}"
+    mode: preserve
+    remote_src: yes
+
+- name: Back up the "/etc/shadow" file.
+  ansible.builtin.copy:
+    src: /etc/shadow
+    dest: "{{ backup_path }}shadow-{{ lookup('pipe','date +%Y%m%d%H%M%S') }}"
+    mode: preserve
+    remote_src: yes
+  become: yes

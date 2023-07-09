@@ -1,0 +1,24 @@
+---
+- name: Create a groups.
+  ansible.builtin.group:
+    name: "{{ item['group'] }}"
+    state: present
+  loop: "{{ accounts }}"
+
+- name: Register a user accounts.
+  ansible.builtin.user:
+    name: "{{ item['name'] }}"
+    group: "{{ item['group'] }}"
+    password: "{{ item['passwd'] | password_hash('sha512' , 65534 | random(seed=inventory_hostname) | string) }}"
+    state: present
+  loop: "{{ accounts }}"
+
+- name: The manager group will be granted administrative privileges.
+  ansible.builtin.template:
+    src: sudo.j2
+    dest: "/etc/sudoers.d/{{ item['name'] }}"
+    mode: 0440
+    owner: root
+    group: root
+  loop: "{{ accounts }}"
+  when: item['group'] == "manager"

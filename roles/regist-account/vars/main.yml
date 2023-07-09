@@ -1,0 +1,11 @@
+---
+accounts:
+  - name: taro
+    passwd: taro-no-password
+    group: manager
+  - name: jiro
+    passwd: jiro-no-password
+    group: employee
+  - name: hanako
+    passwd: hanako-no-passwd
+    group: manager
